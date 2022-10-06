@@ -18,7 +18,3 @@ btnPrzelicz.addEventListener('click' , () => {
     maxPojemnik.innerHTML = max + Math.max(+liczba1.value, +liczba2.value,+liczba3.value,+liczba4.value)
     console.dir(liczba1.value)
 })
-document.getElementById("liczba1", "liczba2", "liczba3", "liczba4").addEventListener("keyup", myFunction);
-function myFunction() {
-    var x document.getElementById("liczba1")
-}
