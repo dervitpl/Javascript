@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="note">
+      <form name="noteSend" action="">
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" />
+        <br />
+        <label for="content">Content: </label>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        <br />
+        <label for="noteColor">Note Color: </label>
+        <input type="color" name="noteColor" id="noteColor" />
+        <br />
+        <label for="pin">PIN: </label>
+        <input type="text" name="pin" id="pin" />
+        <br />
+        <label for="date">Date: </label>
+        <input type="date" name="date" id="date" />
+        <br />
+        <label for="fav">Mark as favourite: </label>
+        <input type="checkbox" name="fav" id="fav" />
+        <br />
+        <label for="tag">Tags: </label>
+        <input type="text" name="tag" id="tag" />
+        <br />
+
+        <input type="button" value="Submit" id="pass" />
+        <input type="button" value="Edit" id="edit" disabled />
+      </form>
+    </div>
+
+    <div class="displayNote">
+      <div class="info">
+        <div class="left inf">
+          <h2>Notes Table</h2>
+        </div>
+        <div class="right inf">
+          <h2>Search</h2>
+          <label for="filtr">Filter: </label>
+          <input type="text" name="filtr" id="filtr" />
+          <br />
+          <label for="keyword">Keyword: </label>
+          <input type="text" name="keyword" id="keyword" />
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Note Color</th>
+            <th>PIN</th>
+            <th>Favourite</th>
+            <th>Date</th>
+            <th>Tags</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
