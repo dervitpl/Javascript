@@ -9,42 +9,21 @@ const asyncAdd = async (a,b) => {
     })
 }
 
-function fillArray(array){
-    for(let i = 0; i < 100; i++){
-        let num = Math.floor(Math.random() * 10);
-        array.push(num);
-    }
-    return array;
-
-}
-
-
-
-async function sumAll(array){
-    const t0 = performance.now();
-    let callCount = 0;
+const addMultiple = async (...numbers) => {
     let sum = 0;
-
-    for(let i = 0; i < array.length; i++){
-        await asyncAdd(sum, array[i]).then((val) => {
-            sum=val;   
-            callCount++;         
-        });
+    for (const number of numbers) {
+      sum = await asyncAdd(sum, number);
     }
-
-    const t1 = performance.now();
-    const time = t1-t0;
-    console.log('czas: '+time+' milisekund  ');
-    console.log('ilosc operacji asynchronicznych: '+callCount);
     return sum;
+  }
 
-}
+  const measureTime = func => {
+    const start = performance.now();
+    func();
+    const end = performance.now();
+    return end - start;
+  }
 
-
-arr = fillArray([]);
-
-let result = sumAll(arr);
-
-result.then((value) => {
-    console.log(value);
-});
+  const data = Array(100).fill().map(Math.random);
+const time = measureTime(() => addMultiple(...data));
+console.log(`Czas wykonania: ${time} ms`);
