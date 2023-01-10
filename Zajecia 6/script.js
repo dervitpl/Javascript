@@ -1,100 +1,46 @@
-const field = document.querySelector('#field');
-const ball = document.querySelector('#ball');
-const hole = document.querySelector('#hole');
-const timeSpan = document.querySelector('#time');
-const scoreSpan = document.querySelector('#score');
-let time = 60;
-let points = 0;
-timeSpan.innerHTML=time;
-scoreSpan.innerHTML=points;
-let previous_alpha = 0;
-let previous_beta = 90;
+      var ball = document.getElementById("ball");
+      var hole = document.getElementById("hole");
+      var ballX = 0;
+      var ballY = 0;
+      var holeX = window.innerWidth / 2 - 50;
+      var holeY = window.innerHeight / 2 - 50;
+      var score = 0;
+      var startTime;
+      function moveBall(event) {
+        ballX = event.clientX - 25;
+        ballY = event.clientY - 25;
+        ball.style.left = ballX + "px";
+        ball.style.top = ballY + "px";
 
-
-
-
-window.addEventListener('deviceorientation', onDeviceMove);
-let timeInterval = setInterval(countTime, 1000);
-
-function countTime(){
-    if(time > 0){
-        time--;
-        timeSpan.innerHTML=time;
-    }else{
-        timeSpan.innerHTML=time;
-        alert("Game finished, your points: "+points);
-        clearInterval(timeInterval);
-    }
-}
-
-function setBall(){
-    const field_width = field.offsetWidth;
-    const field_height = field.offsetHeight;
-    const ball_width = ball.offsetWidth;
-    const ball_height = ball.offsetHeight;
-    const hole_left = hole.offsetLeft;
-    const hole_top = hole.offsetTop;
-
-    let left = hole_left;
-    let top = hole_top;
-    while(left == hole_left){
-        left = Math.random() * ((field_width - ball_width) - 0) + 0;
-    }
-    while(top == hole_top){
-        top = Math.random() * ((field_height - ball_height) - 0) + 0;
-    }     
-
-    ball.style.left = left+'px';
-    ball.style.top = top+'px';
-
-}
-
-setBall();
-
-function onDeviceMove(event) {
-    animate(event.alpha, event.beta);
-}
-
-function animate(alpha, beta) {
-    const ball_left = ball.offsetLeft;
-    const ball_top = ball.offsetTop;
-    
-    if(alpha == previous_alpha){
-        if(alpha > 0){
-            ball.style.left = ball_left+1+'px';
-        }else if(alpha < 0){
-            ball.style.left = ball_left-1+'px';
+        if (Math.abs(ballX - holeX) < 50 && Math.abs(ballY - holeY) < 50) {
+          score++;
+          ballX = 0;
+          ballY = 0;
+          ball.style.left = ballX + "px";
+          ball.style.top = ballY + "px";
         }
+      }
 
-    }else if(alpha > previous_alpha){
-        ball.style.left = ball_left+1+'px';
-    }else if(alpha < previous_alpha){
-        ball.style.left = ball_left-1+'px';   
-    }
-    previous_alpha = alpha;
+      function startTimer() {
+        startTime = Date.now();
+        setTimeout(endTimer, 60000);
+      }
 
-    if(beta == previous_beta){
-        if(beta > 90){
-            ball.style.top = ball_top+1+'px';
-        }else if(beta < 90){
-            ball.style.top = ball_top-1+'px';
-        }
+      function endTimer() {
+        var endTime = Date.now();
+        var timeElapsed = endTime - startTime;
+        console.log("Czas: " + (timeElapsed / 1000) + " sekund");
+        console.log("Liczba trafień: " + score);
 
-    }else if(beta > previous_beta){
-        ball.style.top = ball_top+1+'px';
-    }else if(beta < previous_beta){
-        ball.style.top = ball_top-1+'px';   
-    }
-    previous_beta = beta;
-
-    if(ball.offsetLeft == hole.offsetLeft && ball.offsetTop == hole.offsetTop){
-        points++;
-        scoreSpan.innerHTML=points;
-        setBall();
-    }else if(ball.offsetLeft >= field.offsetWidth || ball.offsetTop >= field.offsetHeight || ball.offsetLeft <= -20 || ball.offsetTop <= -20){
-        setBall();        
-    }
-    
-    window.requestAnimationFrame(() => {animate(alpha, beta)});
- 
-}
+      var record = {
+time: timeElapsed,
+score: score
+};
+      var recordsList = JSON.parse(localStorage.getItem("records")) || [];
+      recordsList.push(record);
+      localStorage.setItem("records", JSON.stringify(recordsList));
+      console.log("Lista rekordów: ", recordsList);
+      }
+      
+      window.addEventListener("devicemotion", moveBall);
+      window.addEventListener("click", startTimer);
