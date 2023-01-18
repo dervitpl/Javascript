@@ -3,18 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <audio src="./sounds/clap.wav" controls id="clap"></audio>
-    <audio src="./sounds/boom.wav" controls id="boom"></audio>
-    <audio src="./sounds/hihat.wav" controls id="hihat"></audio>
-    <audio src="./sounds/kick.wav" controls id="kick"></audio>
-    <audio src="./sounds/openhat.wav" controls id="openhat"></audio>
-    <audio src="./sounds/ride.wav" controls id="ride"></audio>
-    <audio src="./sounds/snare.wav" controls id="snare"></audio>
-    <audio src="./sounds/tink.wav" controls id="tink"></audio>
-    <audio src="./sounds/tom.wav" controls id="tom"></audio>
+    <div class="meat">
+        <button id="record">Ścieżka 1</button>
+        <input type="checkbox" id="startRecording" value="1"/>
+        <label for="startRecording">Nagraj</label>
+
+        <input type="checkbox" id="checkPlay" value="1" />
+        <label for="checkPlay">Zaznacz do odtwarzania</label> 
+    </div>
+    <div class="meat">
+        <button id="record">Ścieżka 2</button>
+        <input type="checkbox" id="startRecording" value="2"/>
+        <label for="startRecording">Nagraj</label>
+
+        <input type="checkbox" id="checkPlay" value="2" />
+        <label for="checkPlay">Zaznacz do odtwarzania</label> 
+    </div>
+    <div class="meat">
+        <button id="record">Ścieżka 3</button>
+        <input type="checkbox" id="startRecording" value="3"/>
+        <label for="startRecording">Nagraj</label>
+
+        <input type="checkbox" id="checkPlay" value="3" />
+        <label for="checkPlay">Zaznacz do odtwarzania</label> 
+    </div>
+    <div class="meat">
+        <button id="record">Ścieżka 4</button>
+        <input type="checkbox" id="startRecording" value="4"/>
+        <label for="startRecording">Nagraj</label>
+
+        <input type="checkbox" id="checkPlay" value="4" />
+        <label for="checkPlay">Zaznacz do odtwarzania</label> 
+    </div>
+    <div class="buttons">
+        <button id="allChannels">Odtwórz wszystkie tracki</button>
+        <button id="selectedChannels">Odtwórz zaznaczone tracki</button>
+    </div>
+    <audio src="./sounds/clap.wav" id="s1"></audio>
+    <audio src="./sounds/hihat.wav" id="s2"></audio>
+    <audio src="./sounds/boom.wav" id="s3"></audio>
+    <audio src="./sounds/kick.wav" id="s4"></audio>
+    <audio src="./sounds/openhat.wav" id="s5"></audio>
+    <audio src="./sounds/ride.wav" id="s6"></audio>
+    <audio src="./sounds/snare.wav" id="s7"></audio>
+    <audio src="./sounds/tink.wav" id="s8"></audio>
+    <audio src="./sounds/tom.wav" id="s9"></audio>
     <script src="drumkit.js"></script>
 </body> 
 </html>
